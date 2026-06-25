@@ -4,8 +4,7 @@ import { injected, metaMask, walletConnect } from "wagmi/connectors";
 import { ritualChainId, ritualRpcUrl } from "@/config/contract";
 
 /**
- * Custom Ritual Chain definition. RPC URL and chain id come from env vars so
- * the demo can target a local devnet, a shared testnet, or mainnet.
+ * Custom Ritual Chain definition.
  */
 export const ritualChain = defineChain({
   id: ritualChainId,
@@ -21,8 +20,6 @@ export const ritualChain = defineChain({
 
 const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID?.trim();
 
-// Injected + MetaMask always work for a workshop. WalletConnect is only added
-// when a project id is provided, since it throws without one.
 const connectors = [
   injected({ shimDisconnect: true }),
   ...(walletConnectProjectId ? [walletConnect({ projectId: walletConnectProjectId })] : []),

@@ -50,6 +50,9 @@ function describeError(err: unknown): string {
  *
  * `run(params)` returns the tx hash (or throws). `onConfirmed(receipt)` fires
  * once when the receipt lands — handy for refetching reads or reading logs.
+ *
+ * NOTE: Ritual Chain accepts EIP-1559 (type 0x02) but NOT legacy (type 0x00).
+ * We let wagmi/wallet handle fee estimation naturally — DO NOT force legacy.
  */
 export function useWriteTx(onConfirmed?: (receipt: TransactionReceipt) => void) {
   const {
